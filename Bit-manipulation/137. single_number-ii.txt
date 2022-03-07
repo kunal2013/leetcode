@@ -1,0 +1,38 @@
+/* Given an integer array nums where every element appears three times except for one, which appears exactly once. 
+   Find the single element and return it.
+   You must implement a solution with a linear runtime complexity and use only constant extra space.
+   Input: nums = [2,2,3,2]
+   Output: 3
+*/
+
+public:
+    int singleNumber(vector<int>& nums) {
+            int n = nums.size() ;
+            long int res=0 ;       // long means 'long int'
+            int x ;
+            int t ;
+            int p=0 ;
+            for (int i=0 ; i<32 ; i++)
+            {
+                t=0 ;
+                for (int j=0 ; j<n ; j++)
+                {
+                        x = nums[j] & 1 ;    // there is two default int type by & is bool operator
+                        t = t + x ;
+                        nums[j] = nums[j] >> 1 ;
+                }
+                    t = t % 3 ;        // here we will get alway 1 or 0
+                    res = res + t*pow(2,p) ;    // pow() func. takes ‘double’ as argument and return ‘double’ value
+                    p ++ ;
+            }
+        return res ;
+    }
+
+/* Algorithm
+
+1. it is showing error with int res, it demands for long int or double.
+
+As the loop runs 32 * n times, Time Complexity = O(N)
+Space Complexity = O(1)
+
+*/

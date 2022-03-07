@@ -1,0 +1,27 @@
+/*
+Given a non-empty array of integers nums, every element appears twice except for one. 
+Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space. 
+Input: nums = [2,2,1]
+Output: 1
+*/
+
+// if two numbers are same then xor will result in 0. And remaning last element will be result.
+
+public:
+    int singleNumber(vector<int>& nums) 
+    {
+        int result = nums[0] ;
+        for (int i=1 ; i< nums.size() ; i++)
+              result = result ^ nums[i] ; 
+            return result ;
+    }        
+
+/*
+Algorithm :
+
+1) it is based on idea that xor 2 number gives 0, and also xoring any number with 0 gives the same 
+   number.
+
+*/

@@ -1,0 +1,22 @@
+// it is like for 5 we will have 0 to 5 value of i. 
+// and we have to return array containing number of 1's in binary representation of i.
+
+public:
+    vector<int> countBits(int n) 
+    {
+       vector<int>res(n+1) ;   
+       res[0] = 0 ;
+       for (int i=0 ; i<=n ; i++)
+       {
+          res[i] = res[i/2] + (i%2) ;       
+       }  
+            return res ;
+    }
+
+/*  Algorithm
+
+1. it is based on the fact that if a number is even it must have same no. of 1 bits as number half of it
+2. if a number is odd then it must have one more 1 bit then it's half value number
+3. i have developed a habit of not defining size of vector. Here vector position manipulation is done.
+
+*/
