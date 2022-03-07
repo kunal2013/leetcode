@@ -1,0 +1,29 @@
+    bool isCousins(TreeNode* root, int x, int y) 
+    {
+      //bool b1 , b2  ;
+      queue <TreeNode*> q, q1 ;
+      q.push(root);
+      while (!q.empty())   // it will run for each level
+      {
+        bool b1 = false , b2 = false ;      
+        while (!q.empty())       // this loop is for each node in levels
+        {
+          auto n = q.front() ;
+          q.pop() ;
+          if (n == NULL)     // null represents siblings are passed
+             b1 = false ;
+          else 
+          {
+           if (n->val == x || n->val == y)          
+             if (!b2)                      // b2 is made true, so if second found return false in else
+                 b2 = b1 = true ;      // for any one match we make both variable true
+             else 
+                 return !b1 ;          // for second match return false but after null in line 26 return
+                                       // true
+         q1.push(n->left), q1.push(n->right), q1.push(nullptr) ;  // 2 are siblings and 3rd is null
+        }
+       }
+      swap(q, q1) ;
+     }
+    return false ;
+   }

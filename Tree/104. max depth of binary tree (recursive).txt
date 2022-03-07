@@ -1,0 +1,19 @@
+
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (root == NULL)
+                return 0;    // it will make leaf=0 as return -1 then +1 
+        else
+        {
+            int left = maxDepth (root->left) ;
+            int right = maxDepth (root->right) ;
+            if (left > right)
+                   return left+1 ;
+                else
+                    return right+1 ;    // it is to send one add to upper level to count 1 height   
+                                        
+         }
+    }
+};

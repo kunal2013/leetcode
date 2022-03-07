@@ -1,0 +1,45 @@
+ vector<int> vec ;
+    bool isCousins(TreeNode* root, int x, int y) 
+    {
+        int h = height(root) ;
+        for (int i=0 ; i<h ; i++)
+        {
+         search (root,i,x,y) ;
+         if (find(vec.begin(),vec.end(),-1)!=vec.end())
+                 return false ;
+if((find(vec.begin(),vec.end(),x)!=vec.end())&&(find(vec.begin(),vec.end(),y)!= vec.end()))
+                return true ;
+        vec.clear() ;
+        }
+           return false ;
+    }
+   
+    void search (TreeNode *root, int level,int x,int y)
+    {
+         if (!root)
+            return ;
+         if (level==1)
+          if (root->left && root->right)
+           if((root->left->val==x&&root->right->val==y)||(root->left->val==y&&root->right->val==x))
+              vec.push_back(-1) ;
+        
+         if (level==0)
+        // {
+         //   cout <<root->val<< " *\n" ;
+            vec.push_back(root->val) ; 
+        // }
+         search (root->left, level-1,x,y) ;
+         search (root->right, level-1,x,y) ;
+    }
+        
+    int height (TreeNode* root)
+    {
+        if (root==NULL)
+           return 0 ;
+        int left = height (root->left) ;
+        int right = height (root->right) ;
+        if (left>right)
+           return left+1 ;
+        else 
+           return right+1 ;         
+      }

@@ -1,0 +1,25 @@
+public:
+    bool isBalanced(TreeNode* root) 
+    {
+      if (root == NULL) 
+          return true ;
+      return height(root) != -1 ;
+     }
+        
+   int height (TreeNode* node)
+   {
+      if (node == NULL)
+          return 0 ;
+      int left = height (node->left) ;
+      int right = height (node->right) ;
+      int bf = abs (left-right) ;      // balance factor
+          
+      if (bf > 1 || left==-1 || right==-1)   // -1 is not bf as return must be 1+(-2) in 
+                                            // line-32. So -2 is problem                  
+          return -1 ;     
+      return 1+max(left,right) ;
+   }
+};
+
+// height balance means left right height must be less then abs(1)
+// time - O.(n)

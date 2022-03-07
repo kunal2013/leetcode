@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) 
+    {
+     int depth = 0;
+     if (root == NULL)
+         return 0;
+     queue<TreeNode*>q;
+     q.push(root);
+     q.push(NULL);   // pushing NULL is marker for count in loop
+    while(!q.empty())
+    {
+        TreeNode* temp = q.front();
+        q.pop();        
+        if(temp == NULL)    // When NULL encountered, increment the value
+            depth++;       // depth represents levels
+                
+        if(temp != NULL)     //If NULL not encountered, keep moving
+        {
+            if(temp->left)
+                  q.push(temp->left);
+           
+              if(temp->right)
+                q.push(temp->right);           
+        }
+        else if(!q.empty())  // so for each level, it inserts NULL at end. As we will reach here seeing NULL
+           q.push(NULL);   // NULL is marker, see line 21        
+     }
+    return depth;
+    }
+};
