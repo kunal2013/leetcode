@@ -1,0 +1,20 @@
+int maxSubArray(vector<int>& nums) 
+    {  
+       int global_sum ;       
+       int curr_sum=0 , i=0 ;       
+       global_sum = nums[0] ;           
+
+    while (curr_sum>= 0 && i<nums.size())
+    {
+        curr_sum += nums[i++] ;           // arr[0] used here then i updates  
+        if (curr_sum > global_sum)
+        {
+            global_sum = curr_sum ;
+        }
+        if (curr_sum < 0)
+        {
+            curr_sum = 0 ;
+        }
+     }      
+     return global_sum ;
+   }
