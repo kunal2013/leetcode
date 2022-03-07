@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) 
+    {  
+            int global_sum ;
+        int m = nums.size() ;
+        int curr_sum=0 , i=0;
+    global_sum = *min_element(nums.begin(),nums.end());                   // in algorithm library
+   // cout << "\nglobal_sum here is "<<global_sum ;
+
+    while (curr_sum>= 0 && i<m)
+    {
+        curr_sum += nums[i++] ;           // arr[0] used here in first cycle. also i get updated.
+      //  cout <<"\n\n"<<i<<". curr sum here is "<<curr_sum;
+        if (curr_sum > global_sum)
+        {
+            global_sum = curr_sum ;
+        }
+        if (curr_sum < 0)
+        {
+            //global_sum = max (global_sum, curr_sum-b[i-1]) ;     // in algorithm library
+            curr_sum = 0 ;
+            }
+          //  cout<<"\nglobal_sum here is "<<global_sum ;
+    }
+return global_sum ;
+}
+};

@@ -1,0 +1,21 @@
+bool checkSubarraySum(vector<int>& nums, int k) 
+    {
+        if (nums.size()<2)
+                return false ;	
+        int sum = 0 ;
+	unordered_map <int, int> hash ;
+	for(int i=0 ; i<nums.size(); i++)
+	{
+		sum = (sum+nums[i])%k ;    // so (modulus+nums) will still work in 
+		if(sum == 0 && i>0) 
+                        return true;
+		
+		if(hash.find(sum) != hash.end())  
+		{
+			if(i - hash[sum] > 1)    // it is checking for size of subarray
+                                return true; 
+		}
+		else hash[sum] = i;   // it will first store h[1] = 0 
+	}
+	return false;
+     }

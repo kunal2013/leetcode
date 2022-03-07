@@ -1,0 +1,17 @@
+ int leastBricks(vector<vector<int>>& wall) 
+    {
+        unordered_map <int, int> map ;
+        int res = 0;
+        int i ;
+        for (i = 0; i < wall.size(); i++) 
+        {
+            int sum = wall[i][0];     // we are storing gaps position in each row
+            for (int j = 1; j < wall[i].size(); j++) 
+            {
+                map[sum]++ ;
+                res = max(res, map[sum]);
+                sum += wall[i][j];           // last element sum will not reach line 13
+            }               
+        }
+        return i-res ;      // i is size of wall i.e. no of rows
+    }

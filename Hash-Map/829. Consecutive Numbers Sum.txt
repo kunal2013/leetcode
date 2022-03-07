@@ -1,0 +1,16 @@
+ int consecutiveNumbersSum(int n) 
+    {
+        map<double,double> hash ;
+        double sum = 0 ;
+        int res = 0 ;
+        hash[0] = 1 ;
+        for (int i=1 ; i<=n ; i++)
+        {
+             sum =  sum + i ;
+             hash[sum] ++ ;
+             res = res + hash[sum-n] ;             
+        }  
+            return res ;
+    }
+
+// it will work for smaller range till, say 5 dec. digits

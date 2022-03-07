@@ -1,0 +1,24 @@
+int longestConsecutive(vector<int>& nums) 
+   {
+        unordered_set<int> set(nums.begin(), nums.end()) ;  // nums is in set now
+                                                           // in set repetition will not be allowed and
+                                                          // once inside set, elements cannot be changed
+        int res = 0 ;
+        for(int n : nums)
+        {
+            if(set.find(n) != set.end())
+            {
+                set.erase(n) ;
+                int prev = n-1 ;
+                int next = n+1 ;
+                while(set.find(prev) != set.end()) 
+                        set.erase(prev--) ;
+                while(set.find(next) != set.end()) 
+                        set.erase(next++) ;
+                res = max(res, next-prev-1) ;    // -1 represent that next will be updated to 1 step up
+                                                 // or prev will be updated to 1 step behind.
+                                                 // so 2 extra but 1 needed to count n itself. so -1.
+            }
+        }
+        return res;
+    }
