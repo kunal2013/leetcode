@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *fast = head, *slow = head;
+        for (int i = 0; i < n; i++) 
+          fast = fast->next;         // it is counting from left
+        if (!fast)            // it means we have to delete head node
+           return head->next ; 
+        while (fast->next) 
+        {
+           fast = fast->next, slow = slow->next;
+           //cout<<slow->next->val<<endl ;
+         }
+        ListNode *temp = slow->next ;
+        slow->next = slow->next->next;
+        //cout<<slow->val ;
+        //free (temp) ;   // free is probably not expected in leetcode
+        return head;
+    }
+};
+
+/* logic is to use two pointer of list type. First traverse one node till n from right.
+   then second with first till first reach last as it will reach last n steps earlier making
+   second to land n step back from end.  */
+// it is two pass pointer code.

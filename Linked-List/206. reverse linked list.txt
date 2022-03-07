@@ -1,0 +1,14 @@
+ListNode* reverseList(ListNode* head) 
+    {
+        ListNode* prev=NULL;   // holds prev
+        ListNode* cur=head;    // hold current
+        ListNode* n;           //  temporary node container for swapping
+        while(cur!=NULL)
+        {
+            n=cur->next;
+            cur->next=prev;       // current will point earlier
+            prev=cur;          // it will hold earlier node address
+            cur=n;          // current moved forward
+        } 
+        return prev;          // return prev as cur will point NULL
+    }

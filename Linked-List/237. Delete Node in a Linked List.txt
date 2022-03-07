@@ -1,0 +1,9 @@
+class Solution {
+public:
+    void deleteNode(ListNode* node) {   // node is preceding node to node to be deleted
+        ListNode *next = node->next ;
+        node->val = next->val ;
+        node->next = next->next ;
+        delete next ;
+    }
+};

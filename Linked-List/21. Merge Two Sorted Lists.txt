@@ -1,0 +1,31 @@
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) 
+    {
+       if(NULL==l1) 
+         return l2;
+       if(NULL==l2) 
+         return l1;     
+            
+    // we will store result in L1 
+      if (l1->val > l2->val)
+      {
+        ListNode* temp = l1 ;
+        l1 = l2 ;
+        l2 = temp ;
+       }
+        ListNode * res = l1 ;
+        while (l1 && l2)
+        {
+          ListNode* t = NULL ;
+          while (l1 && l1->val<=l2->val)
+          {
+            t = l1 ;
+            l1 = l1->next ;
+          }
+           t->next = l2 ;   // if L1 finishes
+                
+           ListNode *temp = l1 ;
+           l1 = l2 ;
+           l2 = temp ;
+        }
+            return res ;    
+    } 

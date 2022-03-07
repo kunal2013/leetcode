@@ -1,0 +1,44 @@
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
+    {
+        if (headA == NULL || headB == NULL) 
+            return NULL;
+        int lenA = 0 ;
+        int lenB = 0 ;
+        ListNode *temp = headA ;
+        while (temp)
+        {
+           lenA++ ;
+           temp = temp->next ;
+        }
+        temp = headB ;
+        while (temp)
+        {
+           lenB++ ;
+           temp = temp->next ;
+        }       
+        ListNode *temp1 ;
+        if (lenA<lenB)  // headB is bigger
+        {
+            temp = headB ;
+            temp1 = headA ;
+        }
+        else 
+        {
+            temp = headA ;
+            temp1 = headB ;
+        }
+        lenA = abs(lenA-lenB) ;
+        while (lenA--)
+        {
+            temp=temp->next ;            
+        }
+         cout << temp->val ;
+         while (!(temp==temp1))
+         {
+            temp = temp->next ;
+            temp1 = temp1->next ;
+            if (temp==NULL)
+                return NULL ;
+         }     
+            return temp ;
+    }
